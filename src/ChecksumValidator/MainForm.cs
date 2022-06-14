@@ -44,6 +44,10 @@ namespace ChecksumValidator
                 TimeSpan.FromMilliseconds(250));
             _result.MouseClick += OnErrorDetails;
             HelpRequested += OnErrorDetails;
+
+            List<string> checksumMethodNames = Enum.GetNames<ChecksumMethod>().ToList();
+            checksumMethodNames.Remove("None");
+            _cmbMethods.DataSource = checksumMethodNames;
         }
 
         protected override void OnShown(EventArgs e)
@@ -151,14 +155,7 @@ namespace ChecksumValidator
                 Checksum.Cancel = false;
                 _error = null;
 
-                ChecksumMethod method;
-                if (_methodMd5.Checked)
-                    method = ChecksumMethod.MD5;
-                else if (_methodSha1.Checked)
-                    method = ChecksumMethod.SHA1;
-                else
-                    method = ChecksumMethod.CRC32;
-
+                ChecksumMethod method = ChecksumMethodResolver.GetFromName((string)_cmbMethods.SelectedItem);
                 string checksum = null;
                 string error = null;
 

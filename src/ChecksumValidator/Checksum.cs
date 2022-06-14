@@ -71,6 +71,9 @@ namespace ChecksumValidator
             switch (method)
             {
                 case ChecksumMethod.SHA1: return SHA1.Create();
+                case ChecksumMethod.SHA256: return SHA256.Create();
+                case ChecksumMethod.SHA384: return SHA384.Create();
+                case ChecksumMethod.SHA512: return SHA512.Create();
                 case ChecksumMethod.MD5: return MD5.Create();
                 case ChecksumMethod.CRC32: return new CRC32();
                 default: throw new NotSupportedException(string.Concat("Requested checksum method ", method, " is not supported"));

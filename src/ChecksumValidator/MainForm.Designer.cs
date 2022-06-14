@@ -34,9 +34,6 @@
             System.Windows.Forms.ToolTip tooltop;
             this._methodsContainer = new System.Windows.Forms.FlowLayoutPanel();
             this._methodLabel = new System.Windows.Forms.Label();
-            this._methodSha1 = new System.Windows.Forms.RadioButton();
-            this._methodMd5 = new System.Windows.Forms.RadioButton();
-            this._methodCrc32 = new System.Windows.Forms.RadioButton();
             this._fileLabel = new System.Windows.Forms.Label();
             this._file = new System.Windows.Forms.TextBox();
             this._filePaste = new System.Windows.Forms.Button();
@@ -48,6 +45,7 @@
             this._result = new System.Windows.Forms.TextBox();
             this._resultCompute = new System.Windows.Forms.Button();
             this._timer = new System.Windows.Forms.Timer(this.components);
+            this._cmbMethods = new System.Windows.Forms.ComboBox();
             layout = new System.Windows.Forms.TableLayoutPanel();
             cancel = new System.Windows.Forms.Button();
             tooltop = new System.Windows.Forms.ToolTip(this.components);
@@ -77,7 +75,7 @@
             layout.Location = new System.Drawing.Point(0, 0);
             layout.Margin = new System.Windows.Forms.Padding(0);
             layout.Name = "layout";
-            layout.Padding = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            layout.Padding = new System.Windows.Forms.Padding(7, 10, 7, 10);
             layout.RowCount = 7;
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -86,7 +84,7 @@
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
             layout.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            layout.Size = new System.Drawing.Size(478, 200);
+            layout.Size = new System.Drawing.Size(559, 227);
             layout.TabIndex = 0;
             // 
             // _methodsContainer
@@ -96,91 +94,59 @@
             this._methodsContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             layout.SetColumnSpan(this._methodsContainer, 2);
             this._methodsContainer.Controls.Add(this._methodLabel);
-            this._methodsContainer.Controls.Add(this._methodSha1);
-            this._methodsContainer.Controls.Add(this._methodMd5);
-            this._methodsContainer.Controls.Add(this._methodCrc32);
-            this._methodsContainer.Location = new System.Drawing.Point(6, 9);
+            this._methodsContainer.Controls.Add(this._cmbMethods);
+            this._methodsContainer.Location = new System.Drawing.Point(7, 10);
             this._methodsContainer.Margin = new System.Windows.Forms.Padding(0);
             this._methodsContainer.Name = "_methodsContainer";
-            this._methodsContainer.Size = new System.Drawing.Size(279, 23);
+            this._methodsContainer.Size = new System.Drawing.Size(241, 29);
             this._methodsContainer.TabIndex = 0;
             // 
             // _methodLabel
             // 
             this._methodLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._methodLabel.AutoSize = true;
-            this._methodLabel.Location = new System.Drawing.Point(0, 5);
-            this._methodLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this._methodLabel.Location = new System.Drawing.Point(0, 7);
+            this._methodLabel.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this._methodLabel.Name = "_methodLabel";
-            this._methodLabel.Size = new System.Drawing.Size(98, 13);
+            this._methodLabel.Size = new System.Drawing.Size(111, 15);
             this._methodLabel.TabIndex = 0;
             this._methodLabel.Text = "Checksum method:";
-            // 
-            // _methodSha1
-            // 
-            this._methodSha1.AutoSize = true;
-            this._methodSha1.Checked = true;
-            this._methodSha1.Location = new System.Drawing.Point(104, 3);
-            this._methodSha1.Name = "_methodSha1";
-            this._methodSha1.Size = new System.Drawing.Size(53, 17);
-            this._methodSha1.TabIndex = 0;
-            this._methodSha1.TabStop = true;
-            this._methodSha1.Text = "SHA1";
-            this._methodSha1.UseVisualStyleBackColor = true;
-            // 
-            // _methodMd5
-            // 
-            this._methodMd5.AutoSize = true;
-            this._methodMd5.Location = new System.Drawing.Point(163, 3);
-            this._methodMd5.Name = "_methodMd5";
-            this._methodMd5.Size = new System.Drawing.Size(48, 17);
-            this._methodMd5.TabIndex = 0;
-            this._methodMd5.Text = "MD5";
-            this._methodMd5.UseVisualStyleBackColor = true;
-            // 
-            // _methodCrc32
-            // 
-            this._methodCrc32.AutoSize = true;
-            this._methodCrc32.Location = new System.Drawing.Point(217, 3);
-            this._methodCrc32.Name = "_methodCrc32";
-            this._methodCrc32.Size = new System.Drawing.Size(59, 17);
-            this._methodCrc32.TabIndex = 0;
-            this._methodCrc32.Text = "CRC32";
-            this._methodCrc32.UseVisualStyleBackColor = true;
             // 
             // _fileLabel
             // 
             this._fileLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._fileLabel.AutoSize = true;
-            this._fileLabel.Location = new System.Drawing.Point(6, 41);
-            this._fileLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
+            this._fileLabel.Location = new System.Drawing.Point(7, 49);
+            this._fileLabel.Margin = new System.Windows.Forms.Padding(0, 10, 4, 0);
             this._fileLabel.Name = "_fileLabel";
-            this._fileLabel.Size = new System.Drawing.Size(66, 13);
+            this._fileLabel.Size = new System.Drawing.Size(74, 15);
             this._fileLabel.TabIndex = 0;
             this._fileLabel.Text = "File to verify:";
             // 
             // _file
             // 
             this._file.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this._file.Location = new System.Drawing.Point(9, 59);
+            this._file.Location = new System.Drawing.Point(11, 69);
+            this._file.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._file.Name = "_file";
-            this._file.Size = new System.Drawing.Size(340, 20);
+            this._file.Size = new System.Drawing.Size(396, 23);
             this._file.TabIndex = 0;
             this._file.TextChanged += new System.EventHandler(this.CheckComputationAvailability);
             // 
             // _filePaste
             // 
-            this._filePaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._filePaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._filePaste.AutoSize = true;
             this._filePaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._filePaste.Image = global::ChecksumValidator.Resources.Resources.Paste;
             this._filePaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._filePaste.Location = new System.Drawing.Point(355, 57);
+            this._filePaste.Location = new System.Drawing.Point(415, 67);
+            this._filePaste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._filePaste.Name = "_filePaste";
-            this._filePaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._filePaste.Size = new System.Drawing.Size(28, 25);
+            this._filePaste.Padding = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this._filePaste.Size = new System.Drawing.Size(30, 27);
             this._filePaste.TabIndex = 0;
             tooltop.SetToolTip(this._filePaste, "Paste clipboard as \"File to verify\"");
             this._filePaste.UseVisualStyleBackColor = true;
@@ -188,18 +154,18 @@
             // 
             // _fileBrowse
             // 
-            this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._fileBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._fileBrowse.AutoSize = true;
             this._fileBrowse.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._fileBrowse.Image = global::ChecksumValidator.Resources.Resources.Open;
             this._fileBrowse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._fileBrowse.Location = new System.Drawing.Point(386, 57);
-            this._fileBrowse.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this._fileBrowse.Location = new System.Drawing.Point(449, 67);
+            this._fileBrowse.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
             this._fileBrowse.Name = "_fileBrowse";
-            this._fileBrowse.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._fileBrowse.Size = new System.Drawing.Size(83, 25);
+            this._fileBrowse.Padding = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this._fileBrowse.Size = new System.Drawing.Size(99, 27);
             this._fileBrowse.TabIndex = 0;
             this._fileBrowse.Text = " Browse";
             this._fileBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -211,35 +177,37 @@
             // 
             this._checksumLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._checksumLabel.AutoSize = true;
-            this._checksumLabel.Location = new System.Drawing.Point(6, 94);
-            this._checksumLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
+            this._checksumLabel.Location = new System.Drawing.Point(7, 107);
+            this._checksumLabel.Margin = new System.Windows.Forms.Padding(0, 10, 4, 0);
             this._checksumLabel.Name = "_checksumLabel";
-            this._checksumLabel.Size = new System.Drawing.Size(107, 13);
+            this._checksumLabel.Size = new System.Drawing.Size(115, 15);
             this._checksumLabel.TabIndex = 0;
             this._checksumLabel.Text = "Expected checksum:";
             // 
             // _checksum
             // 
             this._checksum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this._checksum.Location = new System.Drawing.Point(9, 112);
+            this._checksum.Location = new System.Drawing.Point(11, 127);
+            this._checksum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._checksum.Name = "_checksum";
-            this._checksum.Size = new System.Drawing.Size(340, 20);
+            this._checksum.Size = new System.Drawing.Size(396, 23);
             this._checksum.TabIndex = 0;
             // 
             // _checksumPaste
             // 
-            this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._checksumPaste.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._checksumPaste.AutoSize = true;
             this._checksumPaste.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             layout.SetColumnSpan(this._checksumPaste, 2);
             this._checksumPaste.Image = global::ChecksumValidator.Resources.Resources.Paste;
             this._checksumPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._checksumPaste.Location = new System.Drawing.Point(355, 110);
+            this._checksumPaste.Location = new System.Drawing.Point(415, 125);
+            this._checksumPaste.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._checksumPaste.Name = "_checksumPaste";
-            this._checksumPaste.Padding = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._checksumPaste.Size = new System.Drawing.Size(114, 25);
+            this._checksumPaste.Padding = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this._checksumPaste.Size = new System.Drawing.Size(133, 27);
             this._checksumPaste.TabIndex = 0;
             this._checksumPaste.Text = "Paste";
             this._checksumPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -252,10 +220,10 @@
             this._resultLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._resultLabel.AutoSize = true;
             this._resultLabel.Enabled = false;
-            this._resultLabel.Location = new System.Drawing.Point(6, 147);
-            this._resultLabel.Margin = new System.Windows.Forms.Padding(0, 9, 3, 0);
+            this._resultLabel.Location = new System.Drawing.Point(7, 165);
+            this._resultLabel.Margin = new System.Windows.Forms.Padding(0, 10, 4, 0);
             this._resultLabel.Name = "_resultLabel";
-            this._resultLabel.Size = new System.Drawing.Size(110, 13);
+            this._resultLabel.Size = new System.Drawing.Size(124, 15);
             this._resultLabel.TabIndex = 0;
             this._resultLabel.Text = "Computed checksum:";
             // 
@@ -264,10 +232,11 @@
             this._result.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._result.BackColor = System.Drawing.SystemColors.Window;
             this._result.Enabled = false;
-            this._result.Location = new System.Drawing.Point(9, 165);
+            this._result.Location = new System.Drawing.Point(11, 187);
+            this._result.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._result.Name = "_result";
             this._result.ReadOnly = true;
-            this._result.Size = new System.Drawing.Size(340, 20);
+            this._result.Size = new System.Drawing.Size(396, 23);
             this._result.TabIndex = 0;
             // 
             // _resultCompute
@@ -278,10 +247,11 @@
             this._resultCompute.Enabled = false;
             this._resultCompute.Image = global::ChecksumValidator.Resources.Resources.Run;
             this._resultCompute.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._resultCompute.Location = new System.Drawing.Point(355, 163);
+            this._resultCompute.Location = new System.Drawing.Point(415, 183);
+            this._resultCompute.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._resultCompute.Name = "_resultCompute";
-            this._resultCompute.Padding = new System.Windows.Forms.Padding(6, 1, 3, 1);
-            this._resultCompute.Size = new System.Drawing.Size(114, 25);
+            this._resultCompute.Padding = new System.Windows.Forms.Padding(7, 1, 4, 1);
+            this._resultCompute.Size = new System.Drawing.Size(133, 31);
             this._resultCompute.TabIndex = 0;
             this._resultCompute.Text = "Compute";
             this._resultCompute.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -293,8 +263,9 @@
             // 
             cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             cancel.Location = new System.Drawing.Point(0, 0);
+            cancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             cancel.Name = "cancel";
-            cancel.Size = new System.Drawing.Size(75, 23);
+            cancel.Size = new System.Drawing.Size(88, 27);
             cancel.TabIndex = 0;
             cancel.TabStop = false;
             cancel.Text = "Cancel";
@@ -305,18 +276,27 @@
             // 
             this._timer.Interval = 20;
             // 
+            // _cmbMethods
+            // 
+            this._cmbMethods.FormattingEnabled = true;
+            this._cmbMethods.Location = new System.Drawing.Point(118, 3);
+            this._cmbMethods.Name = "_cmbMethods";
+            this._cmbMethods.Size = new System.Drawing.Size(120, 23);
+            this._cmbMethods.TabIndex = 1;
+            // 
             // MainForm
             // 
             this.AcceptButton = this._resultCompute;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = cancel;
-            this.ClientSize = new System.Drawing.Size(594, 274);
+            this.ClientSize = new System.Drawing.Size(693, 316);
             this.Controls.Add(layout);
             this.Controls.Add(cancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Main dialog";
@@ -341,11 +321,9 @@
         private System.Windows.Forms.TextBox _result;
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.Label _fileLabel;
-        private System.Windows.Forms.RadioButton _methodSha1;
-        private System.Windows.Forms.RadioButton _methodMd5;
         private System.Windows.Forms.FlowLayoutPanel _methodsContainer;
         private System.Windows.Forms.Label _methodLabel;
-        private System.Windows.Forms.RadioButton _methodCrc32;
         private System.Windows.Forms.Button _filePaste;
+        private ComboBox _cmbMethods;
     }
 }
